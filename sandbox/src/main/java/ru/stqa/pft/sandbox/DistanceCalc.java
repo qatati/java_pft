@@ -1,14 +1,13 @@
 package ru.stqa.pft.sandbox;
 
-import static ru.stqa.pft.sandbox.Point.distance1;
 
 public class DistanceCalc {
 
   public static void main(String[] args){
-    Point point1 = new Point(2,4);
-    Point point2 = new Point(2,4);
 
-    System.out.println("Расстояние между двумя точками " + point1.x + " и " + point1.y + " = " + distance1(point1));
-    System.out.println("Расстояние между двумя точками " + point2.x + " и " + point2.y + " = " + point2.distance2());
-  }
+      Point p1 = new Point(2, 3);
+      Point p2 = new Point(6, 8);
+
+      System.out.println("Расстояние между двумя точками {" + p1.x + ";" + p1.y + "} и {" + p2.x + ";" + p2.y + "} = " + p1.distance(p2));
+    }
 }
