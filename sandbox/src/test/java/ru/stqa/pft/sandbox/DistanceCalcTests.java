@@ -1,7 +1,5 @@
 package ru.stqa.pft.sandbox;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
