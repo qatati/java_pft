@@ -10,6 +10,7 @@ public class ContactHelper extends BaseHelper {
 
   public ContactHelper(ApplicationManager app) {
     super(app.wd);
+    this.app=app;
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -49,7 +50,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void createContact(ContactData contactData) {
-//    app.getNavigationHelper().goToAddNewContactPage(); // не работает этот метод, сюда приходит app=null
+    app.getNavigationHelper().goToAddNewContactPage();
     fillContactForm(contactData, true);
     submitNewContact();
     returnToHomePage();
