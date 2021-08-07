@@ -1,15 +1,15 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends BaseHelper {
+  private ApplicationManager app;
 
-  public ContactHelper(WebDriver wd) {
-    super(wd);
+  public ContactHelper(ApplicationManager app) {
+    super(app.wd);
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -46,5 +46,16 @@ public class ContactHelper extends BaseHelper {
 
   public void updateModification() {
     click(By.name("update"));
+  }
+
+  public void createContact(ContactData contactData) {
+//    app.getNavigationHelper().goToAddNewContactPage(); // не работает этот метод, сюда приходит app=null
+    fillContactForm(contactData, true);
+    submitNewContact();
+    returnToHomePage();
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
   }
 }

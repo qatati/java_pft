@@ -8,6 +8,12 @@ public class ContactModificationTests extends TestBase{
   @Test
   public void testContactDeletion() {
     app.getNavigationHelper().goToHomePage();
+    if (!app.getGroupHelper().isThereAGroup()) {
+      app.getNavigationHelper().goToAddNewContactPage();
+      app.getContactHelper().createContact(
+          new ContactData("Татьяна", "Садовская", "8-913-668-69-60", "qa.tatiana.qa@gmail.com",
+              "test1"));
+    }
     app.getContactHelper().selectContact();
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(

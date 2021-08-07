@@ -19,12 +19,18 @@ public class NavigationHelper extends BaseHelper {
   }
 
   public void goToAddNewContactPage() {
+    if (isElementPresent(By.tagName("h1"))
+        && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
+        && isElementPresent(By.name("submit"))) {
+      return;
+    }
     click(By.linkText("add new"));
   }
 
   public void goToHomePage() {
     if (isElementPresent(By.id("maintable"))){
-      click(By.linkText("home"));
+      return;
     }
+    click(By.linkText("home"));
   }
 }
