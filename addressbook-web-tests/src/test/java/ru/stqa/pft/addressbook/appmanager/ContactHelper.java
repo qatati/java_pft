@@ -9,11 +9,12 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends BaseHelper {
+
   private ApplicationManager app;
 
   public ContactHelper(ApplicationManager app) {
     super(app.wd);
-    this.app=app;
+    this.app = app;
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -53,27 +54,38 @@ public class ContactHelper extends BaseHelper {
     click(By.name("update"));
   }
 
-  public void createContact(ContactData contactData) {
-    app.goTo().goToAddNewContactPage();
+  public void create(ContactData contactData) {
     fillContactForm(contactData, true);
     submitNewContact();
     returnToHomePage();
+  }
+
+  public void modify(int index, ContactData contactData) {
+    selectContact(index);
+    initContactModification(index);
+    fillContactForm(contactData, false);
+    updateModification();
+    returnToHomePage();
+  }
+
+  public void delete(int index) {
+    selectContact(index);
+    deleteSelectedContacts();
   }
 
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
-    for (WebElement element:elements ) {
+    for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
-      String firstName = cells.get(1).getText();
-      String name = cells.get(2).getText();
+      String lastName = cells.get(1).getText();
+      String firstName = cells.get(2).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
-      ContactData contact = new ContactData(id, name, firstName, null, null, null);
-      contacts.add(contact);
+      contacts.add(new ContactData().setId(id).setFirstName(firstName).setLastName(lastName));
     }
     return contacts;
   }
