@@ -1,7 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,9 +10,9 @@ public class ContactModificationTests extends TestBase{
 
   @Test
   public void testContactModification() {
-    app.getNavigationHelper().goToHomePage();
-    if (!app.getGroupHelper().isThereAGroup()) {
-      app.getNavigationHelper().goToAddNewContactPage();
+    app.goTo().goToHomePage();
+    if (!app.getContactHelper().isThereAGroup()) {
+      app.goTo().goToAddNewContactPage();
       app.getContactHelper().createContact(
           new ContactData("Татьяна", "Садовская", "8-913-668-69-60", "qa.tatiana.qa@gmail.com",
               "test1"));

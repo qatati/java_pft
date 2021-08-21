@@ -54,7 +54,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void createContact(ContactData contactData) {
-    app.getNavigationHelper().goToAddNewContactPage();
+    app.goTo().goToAddNewContactPage();
     fillContactForm(contactData, true);
     submitNewContact();
     returnToHomePage();
