@@ -18,7 +18,7 @@ public class NavigationHelper extends BaseHelper {
     click(By.linkText("groups"));
   }
 
-  public void addNewContactPage() {
+  public void newContactPage() {
     if (isElementPresent(By.tagName("h1"))
         && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
         && isElementPresent(By.name("submit"))) {
