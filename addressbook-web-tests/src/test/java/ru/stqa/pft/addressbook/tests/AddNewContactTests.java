@@ -18,8 +18,7 @@ public class AddNewContactTests extends TestBase {
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
-    contactData.setId(
-        after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    contactData.setId(after.stream().mapToInt(c -> c.getId()).max().getAsInt());
     before.add(contactData);
     Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
     before.sort(byId);
