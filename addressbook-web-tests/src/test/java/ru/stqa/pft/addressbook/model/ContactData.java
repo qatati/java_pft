@@ -89,16 +89,7 @@ public class ContactData {
     if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) {
       return false;
     }
-    if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) {
-      return false;
-    }
-    if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) {
-      return false;
-    }
-    if (email != null ? !email.equals(that.email) : that.email != null) {
-      return false;
-    }
-    return group != null ? group.equals(that.group) : that.group == null;
+    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
   }
 
   @Override
@@ -106,9 +97,6 @@ public class ContactData {
     int result = id;
     result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    result = 31 * result + (mobilePhone != null ? mobilePhone.hashCode() : 0);
-    result = 31 * result + (email != null ? email.hashCode() : 0);
-    result = 31 * result + (group != null ? group.hashCode() : 0);
     return result;
   }
 }
