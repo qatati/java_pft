@@ -5,10 +5,20 @@ public class ContactData {
   private int id = Integer.MAX_VALUE;
   private String firstName;
   private String lastName;
+  private String address;
+  private String homePhone;
   private String mobilePhone;
+  private String workPhone;
   private String email;
-
+  private String email2;
+  private String email3;
   private String group;
+  private String allPhones;
+  private String allEmail;
+
+  public int getId() {
+    return id;
+  }
 
   public String getFirstName() {
     return firstName;
@@ -21,6 +31,13 @@ public class ContactData {
   public String getMobilePhone() {
     return mobilePhone;
   }
+  public String getHomePhone() {
+    return homePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
 
   public String getEmail() {
     return email;
@@ -29,8 +46,24 @@ public class ContactData {
   public String getGroup() { return group;
   }
 
-  public int getId() {
-    return id;
+  public String getAddress() {
+    return address;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
+  }
+
+  public String getAllEmail() {
+    return allEmail;
   }
 
   public ContactData setId(int id) {
@@ -53,6 +86,16 @@ public class ContactData {
     return this;
   }
 
+  public ContactData setHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData setWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+  }
+
   public ContactData setEmail(String email) {
     this.email = email;
     return this;
@@ -60,6 +103,30 @@ public class ContactData {
 
   public ContactData setGroup(String group) {
     this.group = group;
+    return this;
+  }
+
+  public ContactData setAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+  public ContactData setAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData setEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+  public ContactData setEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public ContactData setAllEmail(String allEmail) {
+    this.allEmail = allEmail;
     return this;
   }
 
