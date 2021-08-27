@@ -61,6 +61,7 @@ public class GroupHelper extends BaseHelper {
     initGroupCreation();
     fillGroupForm(groupData);
     submitGroupCreation();
+    groupCache = null;
     returnToGroupPage();
   }
   public void modify(GroupData group) {
