@@ -57,9 +57,9 @@ public class ContactDataGenerator {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation()
         .registerTypeAdapter(File.class, new MyFileSerializer()).create();
     String json = gson.toJson(groups);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
   }
 
   private List<ContactData> generateContacts(int count) {
