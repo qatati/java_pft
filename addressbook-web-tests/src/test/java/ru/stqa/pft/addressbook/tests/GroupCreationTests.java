@@ -30,6 +30,7 @@ public class GroupCreationTests extends TestBase {
       line = reader.readLine();
     }
     XStream xStream = new XStream();
+    xStream.allowTypes(new Class[]{ GroupData.class });
     xStream.processAnnotations(GroupData.class);
     List<GroupData> groups = (List<GroupData>) xStream.fromXML(xml);
     return groups.stream().map(g -> new Object[]{g}).collect(Collectors.toList()).iterator();
