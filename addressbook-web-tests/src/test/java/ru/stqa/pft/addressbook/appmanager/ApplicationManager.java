@@ -1,5 +1,9 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -17,24 +21,28 @@ public class ApplicationManager {
   private NavigationHelper navigationHelper;
   private SessionHelper sessionHelper;
   private String browser;
+  private Properties properties;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
   }
 
-  public void init() {
+  public void init() throws IOException {
+    String target = System.getProperty("target", "local");
+    properties = new Properties();
+    properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
     if (browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver();
     } else if (browser.equals(BrowserType.CHROME)) {
       wd = new ChromeDriver();
     }
     wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-    wd.get("http://localhost/addressbook/index.php");
+    wd.get(properties.getProperty("web.baseUrl"));
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     contactHelper = new ContactHelper(this);
-    sessionHelper.login("admin", "secret");
+    sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.getPassword"));
   }
 
   public void stop() {
