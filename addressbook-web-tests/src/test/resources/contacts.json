@@ -1,52 +1,26 @@
 [
   {
-    "firstName": "Мэри 0",
-    "lastName": "Поппинс 0",
+    "firstname": "Мэри 0",
+    "lastname": "Поппинс 0",
     "mobilePhone": "8-900-660-60-60",
     "email": "qa.tatiana.qa0@gmail.com",
     "group": "test 1",
-    "photo": {
-      "path": "src/test/resources/michael.jpeg"
-    }
+    "photo": "src/test/resources/michael.jpeg"
   },
   {
-    "firstName": "Мэри 1",
-    "lastName": "Поппинс 1",
+    "firstname": "Мэри 1",
+    "lastname": "Поппинс 1",
     "mobilePhone": "8-900-660-60-61",
     "email": "qa.tatiana.qa1@gmail.com",
     "group": "test 1",
-    "photo": {
-      "path": "src/test/resources/michael.jpeg"
-    }
+    "photo": "src/test/resources/michael.jpeg"
   },
   {
-    "firstName": "Мэри 2",
-    "lastName": "Поппинс 2",
+    "firstname": "Мэри 2",
+    "lastname": "Поппинс 2",
     "mobilePhone": "8-900-660-60-62",
     "email": "qa.tatiana.qa2@gmail.com",
     "group": "test 1",
-    "photo": {
-      "path": "src/test/resources/michael.jpeg"
-    }
-  },
-  {
-    "firstName": "Мэри 3",
-    "lastName": "Поппинс 3",
-    "mobilePhone": "8-900-660-60-63",
-    "email": "qa.tatiana.qa3@gmail.com",
-    "group": "test 1",
-    "photo": {
-      "path": "src/test/resources/michael.jpeg"
-    }
-  },
-  {
-    "firstName": "Мэри 4",
-    "lastName": "Поппинс 4",
-    "mobilePhone": "8-900-660-60-64",
-    "email": "qa.tatiana.qa4@gmail.com",
-    "group": "test 1",
-    "photo": {
-      "path": "src/test/resources/michael.jpeg"
-    }
+    "photo": "src/test/resources/michael.jpeg"
   }
 ]
