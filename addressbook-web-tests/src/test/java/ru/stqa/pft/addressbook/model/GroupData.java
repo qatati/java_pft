@@ -25,7 +25,6 @@ public class GroupData {
   @Expose
   @Id
   @Column(name = "group_header")
-  @Type(type = "text")
   private String header;
   @Expose
   @Id
@@ -69,14 +68,6 @@ public class GroupData {
     return this;
   }
 
-  @Override
-  public String toString() {
-    return "GroupData{" +
-        "id='" + id + '\'' +
-        ", name='" + name + '\'' +
-        '}';
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -100,5 +91,13 @@ public class GroupData {
     int result = id;
     result = 31 * result + (name != null ? name.hashCode() : 0);
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return "GroupData{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        '}';
   }
 }
