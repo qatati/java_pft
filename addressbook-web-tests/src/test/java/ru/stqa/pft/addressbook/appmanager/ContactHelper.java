@@ -19,8 +19,8 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
-    type(By.name("firstname"), contactData.getFirstName());
-    type(By.name("lastname"), contactData.getLastName());
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("lastname"), contactData.getLastname());
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("email"), contactData.getEmail());
     attach(By.name("photo"), contactData.getPhoto());
@@ -91,7 +91,7 @@ public class ContactHelper extends BaseHelper {
       String lastName = cells.get(1).getText();
       String firstName = cells.get(2).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
-      contacts.add(new ContactData().setId(id).setFirstName(firstName).setLastName(lastName));
+      contacts.add(new ContactData().setId(id).setFirstname(firstName).setLastname(lastName));
     }
     return contacts;
   }
@@ -107,7 +107,7 @@ public class ContactHelper extends BaseHelper {
       String allEmail = cells.get(4).getText();
       String allPhones = cells.get(5).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
-      contacts.add(new ContactData().setId(id).setFirstName(firstName).setLastName(lastName)
+      contacts.add(new ContactData().setId(id).setFirstname(firstName).setLastname(lastName)
       .setAddress(address).setAllEmail(allEmail).setAllPhones(allPhones));
     }
     return contacts;
@@ -125,7 +125,7 @@ public class ContactHelper extends BaseHelper {
     String email2 = wd.findElement(By.name("email2")).getAttribute("value");
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
-    return new ContactData().setId(contact.getId()).setFirstName(firstName).setLastName(lastName)
+    return new ContactData().setId(contact.getId()).setFirstname(firstName).setLastname(lastName)
         .setAddress(address).setHomePhone(home).setWorkPhone(work).setMobilePhone(mobile)
         .setEmail(email).setEmail2(email2).setEmail3(email3);
   }

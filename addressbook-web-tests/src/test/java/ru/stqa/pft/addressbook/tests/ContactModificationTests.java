@@ -17,7 +17,7 @@ public class ContactModificationTests extends TestBase{
     if (app.contact().list().isEmpty()) {
       app.goTo().newContactPage();
       app.contact().create(
-          new ContactData().setFirstName("Татьяна").setLastName("Садовская")
+          new ContactData().setFirstname("Татьяна").setLastname("Садовская")
               .setMobilePhone("8-900-660-60-60").setEmail("qa.tatiana.qa@gmail.com").setGroup("test1"));
     }
   }
@@ -27,7 +27,7 @@ public class ContactModificationTests extends TestBase{
     Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
     ContactData contactData = new ContactData().setId(modifiedContact.getId())
-        .setFirstName("Анна").setLastName("Иванова").setMobilePhone("8-900-660-60-61")
+        .setFirstname("Анна").setLastname("Иванова").setMobilePhone("8-900-660-60-61")
         .setEmail("qa.tatiana.qa@gmail.com").setGroup("test1");
     app.contact().modify(contactData);
     Contacts after = app.contact().all();

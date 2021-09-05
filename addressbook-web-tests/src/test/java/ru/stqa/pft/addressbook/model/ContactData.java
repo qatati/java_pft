@@ -2,40 +2,67 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
 import java.io.File;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import org.hibernate.annotations.Type;
 
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
 
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
   @Expose
-  private String firstName;
+  @Column(name = "firstname")
+  private String firstname;
   @Expose
-  private String lastName;
+  @Column(name = "lastname")
+  private String lastname;
+  @Type(type = "text")
   private String address;
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
   @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
   @Expose
+  @Type(type = "text")
   private String email;
+  @Type(type = "text")
   private String email2;
+  @Type(type = "text")
   private String email3;
   @Expose
+  @Transient
   private String group;
+  @Transient
   private String allPhones;
+  @Transient
   private String allEmail;
   @Expose
-  private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public int getId() {
     return id;
   }
 
-  public String getFirstName() {
-    return firstName;
+  public String getFirstname() {
+    return firstname;
   }
 
-  public String getLastName() {
-    return lastName;
+  public String getLastname() {
+    return lastname;
   }
 
   public String getMobilePhone() {
@@ -77,7 +104,7 @@ public class ContactData {
   }
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public ContactData setId(int id) {
@@ -85,13 +112,13 @@ public class ContactData {
     return this;
   }
 
-  public ContactData setFirstName(String firstName) {
-    this.firstName = firstName;
+  public ContactData setFirstname(String firstname) {
+    this.firstname = firstname;
     return this;
   }
 
-  public ContactData setLastName(String lastName) {
-    this.lastName = lastName;
+  public ContactData setLastname(String lastname) {
+    this.lastname = lastname;
     return this;
   }
 
@@ -145,7 +172,7 @@ public class ContactData {
   }
 
   public ContactData setPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -153,8 +180,8 @@ public class ContactData {
   public String toString() {
     return "ContactData{" +
         "id=" + id +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
+        ", firstName='" + firstname + '\'' +
+        ", lastName='" + lastname + '\'' +
         '}';
   }
 
@@ -172,17 +199,17 @@ public class ContactData {
     if (id != that.id) {
       return false;
     }
-    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) {
+    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) {
       return false;
     }
-    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
   }
 
   @Override
   public int hashCode() {
     int result = id;
-    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
 }

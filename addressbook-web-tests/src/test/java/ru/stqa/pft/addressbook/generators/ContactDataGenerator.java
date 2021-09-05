@@ -5,11 +5,8 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
@@ -66,8 +63,8 @@ public class ContactDataGenerator {
     List<ContactData> contacts = new ArrayList<ContactData>();
     File photo = new File("src/test/resources/michael.jpeg");
     for (int i = 0; i < count; i++) {
-      contacts.add(new ContactData().setFirstName(String.format("Мэри %s", i))
-          .setLastName(String.format("Поппинс %s", i))
+      contacts.add(new ContactData().setFirstname(String.format("Мэри %s", i))
+          .setLastname(String.format("Поппинс %s", i))
           .setMobilePhone(String.format("8-900-660-60-6%s", i))
           .setEmail(String.format("qa.tatiana.qa%s@gmail.com", i)).setGroup("test 1")
           .setPhoto(photo));

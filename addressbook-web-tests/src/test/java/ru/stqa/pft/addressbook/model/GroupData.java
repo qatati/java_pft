@@ -19,15 +19,13 @@ public class GroupData {
   @Column(name = "group_id")
   private int id = Integer.MAX_VALUE;
   @Expose
-  @Id
   @Column(name = "group_name")
   private String name;
   @Expose
-  @Id
   @Column(name = "group_header")
+  @Type(type = "text")
   private String header;
   @Expose
-  @Id
   @Column(name = "group_footer")
   @Type(type = "text")
   private String footer;
