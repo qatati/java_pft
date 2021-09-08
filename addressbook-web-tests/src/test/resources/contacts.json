@@ -2,24 +2,39 @@
   {
     "firstname": "Мэри 0",
     "lastname": "Поппинс 0",
+    "address": "address 0",
+    "homePhone": "55660",
     "mobilePhone": "8-900-660-60-60",
+    "workPhone": "",
     "email": "qa.tatiana.qa0@gmail.com",
+    "email2": "qa.tatiana.qa2@gmail.com",
+    "email3": "qa.tatiana.qa3@gmail.com",
     "group": "test 1",
     "photo": "src/test/resources/michael.jpeg"
   },
   {
     "firstname": "Мэри 1",
     "lastname": "Поппинс 1",
+    "address": "address 1",
+    "homePhone": "55661",
     "mobilePhone": "8-900-660-60-61",
+    "workPhone": "",
     "email": "qa.tatiana.qa1@gmail.com",
+    "email2": "qa.tatiana.qa2@gmail.com",
+    "email3": "qa.tatiana.qa3@gmail.com",
     "group": "test 1",
     "photo": "src/test/resources/michael.jpeg"
   },
   {
     "firstname": "Мэри 2",
     "lastname": "Поппинс 2",
+    "address": "address 2",
+    "homePhone": "55662",
     "mobilePhone": "8-900-660-60-62",
+    "workPhone": "",
     "email": "qa.tatiana.qa2@gmail.com",
+    "email2": "qa.tatiana.qa2@gmail.com",
+    "email3": "qa.tatiana.qa3@gmail.com",
     "group": "test 1",
     "photo": "src/test/resources/michael.jpeg"
   }

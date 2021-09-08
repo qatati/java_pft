@@ -31,7 +31,7 @@ public class ContactModificationTests extends TestBase{
     ContactData contactData = new ContactData().setId(modifiedContact.getId())
         .setFirstname("Анна").setLastname("Иванова").setMobilePhone("8-900-660-60-61")
         .setEmail("qa.tatiana.qa@gmail.com").setGroup("test1").setPhoto(photo)
-        .setAddress("address").setHomePhone("5566").setEmail2("qa.tatiana.qa2@gmail.com").setEmail3("qa.tatiana.qa3@gmail.com");
+        .setAddress("address").setHomePhone("5566").setWorkPhone("").setEmail2("qa.tatiana.qa2@gmail.com").setEmail3("qa.tatiana.qa3@gmail.com");
     app.goTo().homePage();
     app.contact().modify(contactData);
     Contacts after = app.db().contacts();
