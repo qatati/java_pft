@@ -66,7 +66,9 @@ public class ContactDataGenerator {
       contacts.add(new ContactData().setFirstname(String.format("Мэри %s", i))
           .setLastname(String.format("Поппинс %s", i))
           .setMobilePhone(String.format("8-900-660-60-6%s", i))
-          .setEmail(String.format("qa.tatiana.qa%s@gmail.com", i)).setGroup("test 1").setPhoto(photo)
+          .setEmail(String.format("qa.tatiana.qa%s@gmail.com", i))
+//          .setGroup("test 1")
+          .setPhoto(photo)
           .setAddress(String.format("address %s",i)).setHomePhone(String.format("5566%s", i)).setWorkPhone("")
           .setEmail2("qa.tatiana.qa2@gmail.com").setEmail3("qa.tatiana.qa3@gmail.com"));
     }

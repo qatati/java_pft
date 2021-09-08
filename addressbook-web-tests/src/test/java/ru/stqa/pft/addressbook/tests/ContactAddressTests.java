@@ -16,7 +16,8 @@ public class ContactAddressTests extends TestBase {
       app.goTo().newContactPage();
       app.contact().create(
           new ContactData().setFirstname("Татьяна").setLastname("Садовская")
-              .setMobilePhone("8-900-660-60-60").setEmail("qa.tatiana.qa@gmail.com").setGroup("test1"));
+              .setMobilePhone("8-900-660-60-60").setEmail("qa.tatiana.qa@gmail.com"));
+//              .setGroup("test1"));
     }
   }
 

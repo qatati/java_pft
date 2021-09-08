@@ -19,7 +19,8 @@ public class ContactModificationTests extends TestBase{
       app.goTo().newContactPage();
       app.contact().create(
           new ContactData().setFirstname("Татьяна").setLastname("Садовская")
-              .setMobilePhone("8-900-660-60-60").setEmail("qa.tatiana.qa@gmail.com").setGroup("test1"));
+              .setMobilePhone("8-900-660-60-60").setEmail("qa.tatiana.qa@gmail.com"));
+//      .setGroup("test1"));
     }
   }
 
@@ -30,7 +31,7 @@ public class ContactModificationTests extends TestBase{
     File photo = new File("src/test/resources/michael.jpeg");
     ContactData contactData = new ContactData().setId(modifiedContact.getId())
         .setFirstname("Анна").setLastname("Иванова").setMobilePhone("8-900-660-60-61")
-        .setEmail("qa.tatiana.qa@gmail.com").setGroup("test1").setPhoto(photo)
+        .setEmail("qa.tatiana.qa@gmail.com").setPhoto(photo)
         .setAddress("address").setHomePhone("5566").setWorkPhone("").setEmail2("qa.tatiana.qa2@gmail.com").setEmail3("qa.tatiana.qa3@gmail.com");
     app.goTo().homePage();
     app.contact().modify(contactData);
