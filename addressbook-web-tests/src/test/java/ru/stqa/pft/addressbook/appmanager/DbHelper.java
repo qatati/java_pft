@@ -45,4 +45,28 @@ public class DbHelper {
     session.close();
     return new Contacts(result);
   }
+
+  public Contacts contactWithId(int contactId) {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<ContactData> result = session.createQuery("from ContactData where Id=" + contactId).list();
+    for (ContactData contacts : result) {
+      System.out.println(contacts);
+    }
+    session.getTransaction().commit();
+    session.close();
+    return new Contacts(result);
+  }
+
+//  public Contacts contactsNotInGroup() {
+//    Session session = sessionFactory.openSession();
+//    session.beginTransaction();
+//    List<ContactData> result = session.createQuery("from ContactData where deprecated = 0000-00-00").list();
+//    for (ContactData contacts : result) {
+//      System.out.println(contacts);
+//    }
+//    session.getTransaction().commit();
+//    session.close();
+//    return new Contacts(result);
+//  }
   }

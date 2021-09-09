@@ -52,9 +52,6 @@ public class ContactData {
   @Expose
   @Type(type = "text")
   private String email3;
-  //  @Expose
-//  @Transient
-//  private String group;
   @Transient
   private String allPhones;
   @Transient
@@ -118,7 +115,11 @@ public class ContactData {
   }
 
   public File getPhoto() {
-    return new File(photo);
+    if (photo != null) {
+      return new File(photo);
+    } else {
+      return null;
+    }
   }
 
   public Groups getGroups() {

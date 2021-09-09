@@ -14,13 +14,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.openqa.selenium.json.TypeToken;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 public class ContactCreationTests extends TestBase {
+  Groups groups;
 
   @DataProvider
   public Iterator<Object[]> validContactsFromJson() throws IOException {
@@ -40,9 +43,18 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
+  @BeforeClass
+  public void ensurePreconditions() {
+    groups = app.db().groups();
+    if (groups.isEmpty()) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("new Group"));
+      groups = app.db().groups();
+    }
+  }
+
   @Test (dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
-    Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
     app.goTo().newContactPage();
     app.contact().create(contact.inGroup(groups.iterator().next()));

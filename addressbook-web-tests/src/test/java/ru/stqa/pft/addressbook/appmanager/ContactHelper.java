@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 public class ContactHelper extends BaseHelper {
@@ -31,10 +30,11 @@ public class ContactHelper extends BaseHelper {
     type(By.name("email3"), contactData.getEmail3());
     attach(By.name("photo"), contactData.getPhoto());
     if (creation) {
-      if (contactData.getGroups().size() > 0) {
+      if (!contactData.getGroups().isEmpty()) {
         Assert.assertTrue(contactData.getGroups().size() == 1);
       }
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+      new Select(wd.findElement(By.name("new_group")))
+          .selectByVisibleText(contactData.getGroups().iterator().next().getName());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -117,7 +117,7 @@ public class ContactHelper extends BaseHelper {
       String allPhones = cells.get(5).getText();
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
       contacts.add(new ContactData().setId(id).setFirstname(firstName).setLastname(lastName)
-      .setAddress(address).setAllEmail(allEmail).setAllPhones(allPhones));
+          .setAddress(address).setAllEmail(allEmail).setAllPhones(allPhones));
     }
     return contacts;
   }
@@ -137,5 +137,16 @@ public class ContactHelper extends BaseHelper {
     return new ContactData().setId(contact.getId()).setFirstname(firstName).setLastname(lastName)
         .setAddress(address).setHomePhone(home).setWorkPhone(work).setMobilePhone(mobile)
         .setEmail(email).setEmail2(email2).setEmail3(email3);
+  }
+
+  public void additionToGroups(ContactData contactData, Groups groups) {
+    selectContactById(contactData.getId());
+    addToGroup(groups);
+  }
+
+  private void addToGroup(Groups groups) {
+    new Select(wd.findElement(By.name("to_group")))
+        .selectByValue(String.valueOf(groups.iterator().next().getId()));
+    wd.findElement(By.name("add")).click();
   }
 }

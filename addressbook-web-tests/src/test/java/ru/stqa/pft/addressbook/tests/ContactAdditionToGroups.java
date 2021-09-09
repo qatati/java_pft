@@ -4,19 +4,18 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-public class ContactPhoneTests extends TestBase{
+public class ContactAdditionToGroups extends TestBase {
 
+  Groups groups;
   @BeforeMethod
   public void ensurePreconditions() {
-    Groups groups = app.db().groups();
+    groups = app.db().groups();
     if (groups.isEmpty()) {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("new Group"));
@@ -36,23 +35,13 @@ public class ContactPhoneTests extends TestBase{
   }
 
   @Test
-  public void testContactPhones() {
+  public void testContactAdditionToGroups() {
+    ContactData modifyingContact = app.db().contacts().iterator().next();
+    app.contact().additionToGroups(modifyingContact, groups);
     app.goTo().homePage();
-    ContactData contact = app.contact().all().iterator().next();
-    ContactData contactInfoFromEditPage = app.contact().infoFromEditPage(contact);
-
-    assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditPage)));
-  }
-
-  private String mergePhones(ContactData contact) {
-    return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
-        .stream().filter(s -> !s.isEmpty())
-        .map(ContactPhoneTests::cleaned)
-        .collect(Collectors.joining("\n"));
-  }
-
-  public static String cleaned (String phone) {
-      return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+    int contactId = modifyingContact.getId();
+    ContactData modifiedContact = app.db().contactWithId(contactId).iterator().next();
+    assertThat(modifiedContact.getGroups(), equalTo(modifyingContact.inGroup(groups.iterator().next())));
   }
 
 }
