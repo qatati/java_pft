@@ -37,9 +37,10 @@ public class ContactAdditionToGroups extends TestBase {
   @Test
   public void testContactAdditionToGroups() {
     ContactData modifyingContact = app.db().contacts().iterator().next();
-    app.contact().additionToGroups(modifyingContact, groups);
-    app.goTo().homePage();
     int contactId = modifyingContact.getId();
+    int groupId = groups.iterator().next().getId();
+    app.contact().additionToGroups(modifyingContact, groupId);
+    app.goTo().homePage();
     ContactData modifiedContact = app.db().contactWithId(contactId).iterator().next();
     assertThat(modifiedContact.getGroups(), equalTo(modifyingContact.inGroup(groups.iterator().next())));
   }

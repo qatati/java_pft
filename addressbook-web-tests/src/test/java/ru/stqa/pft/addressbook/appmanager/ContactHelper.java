@@ -139,14 +139,14 @@ public class ContactHelper extends BaseHelper {
         .setEmail(email).setEmail2(email2).setEmail3(email3);
   }
 
-  public void additionToGroups(ContactData contactData, Groups groups) {
+  public void additionToGroups(ContactData contactData, int groupId) {
     selectContactById(contactData.getId());
-    addToGroup(groups);
+    addToGroup(groupId);
   }
 
-  private void addToGroup(Groups groups) {
+  private void addToGroup(int groupId) {
     new Select(wd.findElement(By.name("to_group")))
-        .selectByValue(String.valueOf(groups.iterator().next().getId()));
+        .selectByValue(String.valueOf(groupId));
     wd.findElement(By.name("add")).click();
   }
 }
