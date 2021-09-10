@@ -34,6 +34,7 @@ public class GroupData {
   @Column(name = "group_footer")
   @Type(type = "text")
   private String footer;
+
   @ManyToMany(mappedBy = "groups")
   private Set<ContactData> contacts = new HashSet<ContactData>();
 
@@ -54,6 +55,10 @@ public class GroupData {
   }
 
   public Contacts getGroups() {
+    return new Contacts(contacts);
+  }
+
+  public Contacts getContacts() {
     return new Contacts(contacts);
   }
 

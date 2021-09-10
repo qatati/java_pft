@@ -9,6 +9,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 public class HbConnectionTest {
 
@@ -34,7 +35,7 @@ public class HbConnectionTest {
   public void testHbConnection() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<ContactData> result = session.createQuery("from ContactData where deprecated = 0000-00-00").list();
+    List<ContactData> result = session.createQuery("from ContactData where GroupData.group_id=153").list();
     session.getTransaction().commit();
     session.close();
 
