@@ -1,4 +1,4 @@
-package ru.stqa.pft.mantis.tests.appmanager;
+package ru.stqa.pft.mantis.appmanager;
 
 import java.io.File;
 import java.io.FileReader;
@@ -48,5 +48,13 @@ public class ApplicationManager {
     } catch (NoSuchElementException e) {
       return false;
     }
+  }
+
+  public HttpSession newSession() {
+    return new HttpSession(this);
+  }
+
+  public String getProperty(String key) {
+    return properties.getProperty(key);
   }
 }
