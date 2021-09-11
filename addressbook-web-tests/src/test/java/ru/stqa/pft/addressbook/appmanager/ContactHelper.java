@@ -149,4 +149,19 @@ public class ContactHelper extends BaseHelper {
         .selectByValue(String.valueOf(groupId));
     wd.findElement(By.name("add")).click();
   }
+
+  public void deletionfromGroups(ContactData contactData, int groupId) {
+    selectGroup(groupId);
+    selectContactById(contactData.getId());
+    deleteFromGroup();
+  }
+
+  private void selectGroup(int groupId) {
+    new Select(wd.findElement(By.name("group")))
+        .selectByValue(String.valueOf(groupId));
+  }
+
+  private void deleteFromGroup() {
+    wd.findElement(By.name("remove")).click();
+  }
 }

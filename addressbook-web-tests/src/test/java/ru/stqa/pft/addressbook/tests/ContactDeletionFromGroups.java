@@ -10,8 +10,7 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-public class ContactAdditionToGroups extends TestBase {
-
+public class ContactDeletionFromGroups extends TestBase {
   Groups groups;
   @BeforeMethod
   public void ensurePreconditions() {
@@ -34,19 +33,17 @@ public class ContactAdditionToGroups extends TestBase {
   }
 
   @Test
-  public void testContactAdditionToGroups() {
-    Contacts beforeAddtionContacts = app.db().contacts();
+  public void testContactDeletionFromGroups() {
+    Contacts beforeDeletionContacts = app.db().contacts();
     ContactData userSelect = null;
     ContactData userAfter = null;
-    for (ContactData contactData:beforeAddtionContacts) {
+    for (ContactData contactData:beforeDeletionContacts) {
       userSelect = contactData;
-      if (contactData.getGroups().size() < groups.size()){
-        app.contact().additionToGroups(contactData, groups.iterator().next().getId());
+      if (!contactData.getGroups().isEmpty()){
+        app.contact().deletionfromGroups(contactData, contactData.getGroups().iterator().next().getId());
         app.goTo().homePage();
       } else {
-        app.goTo().groupPage();
-        app.group().create(new GroupData().withName("new Group"));
-        groups = app.db().groups();
+        app.contact().additionToGroups(contactData, groups.iterator().next().getId());
         app.goTo().homePage();
       }
     }
@@ -56,6 +53,6 @@ public class ContactAdditionToGroups extends TestBase {
         userAfter = contactData;
       }
     }
-    assertThat(afterAddtionContacts, equalTo(beforeAddtionContacts.without(userSelect).withAdded(userAfter)));
+    assertThat(afterAddtionContacts, equalTo(beforeDeletionContacts.without(userSelect).withAdded(userAfter)));
   }
-  }
+}
