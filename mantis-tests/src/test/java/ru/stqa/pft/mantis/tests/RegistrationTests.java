@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import javax.mail.MessagingException;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
-import ru.stqa.pft.mantis.appmanager.MailMessage;
+import ru.stqa.pft.mantis.model.MailMessage;
 
 public class RegistrationTests extends TestBase {
 

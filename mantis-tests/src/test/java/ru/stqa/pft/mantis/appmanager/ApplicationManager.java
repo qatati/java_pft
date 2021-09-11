@@ -24,6 +24,9 @@ public class ApplicationManager {
   public JamesHelper jamesHelper;
   public LoginHelper loginHelper;
   public NavigationHelper navigationHelper;
+  private DbHelper dbHelper;
+  private ManageUsersHelper manageUsersHelper;
+  private EditUserHelper editUserHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -33,6 +36,7 @@ public class ApplicationManager {
     String target = System.getProperty("target", "local");
     properties = new Properties();
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+    dbHelper = new DbHelper();
   }
 
   public void stop() {
@@ -72,11 +76,25 @@ public class ApplicationManager {
     return loginHelper;
   }
 
-  public NavigationHelper mainPage() {
+  public NavigationHelper navigate() {
     if (navigationHelper ==null) {
       navigationHelper = new NavigationHelper(this);
     }
     return navigationHelper;
+  }
+
+  public ManageUsersHelper manageUsers() {
+    if (manageUsersHelper ==null) {
+      manageUsersHelper = new ManageUsersHelper(this);
+    }
+    return manageUsersHelper;
+  }
+
+  public EditUserHelper edit() {
+    if (editUserHelper ==null) {
+      editUserHelper = new EditUserHelper(this);
+    }
+    return editUserHelper;
   }
 
   public FtpHelper ftp() {
@@ -99,6 +117,8 @@ public class ApplicationManager {
     }
     return jamesHelper;
   }
+
+  public DbHelper db() { return dbHelper;}
 
   public WebDriver getDriver() {
     if (wd==null) {

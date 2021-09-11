@@ -21,5 +21,9 @@ public class NavigationHelper extends BaseHelper{
       Assert.assertTrue(title.contains("Manage Accounts"), "Заголовок не совпадает!");
     }
 
-
+public void logout() {
+    click(By.linkText("Logout"));
+  String title = wd.findElement(By.xpath("//td[@class='form-title']")).getText();
+  Assert.assertTrue(title.contains("Login"), "Заголовок не совпадает!");
+}
 }

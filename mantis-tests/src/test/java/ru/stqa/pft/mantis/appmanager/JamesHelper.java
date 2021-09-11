@@ -13,6 +13,7 @@ import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Store;
 import org.apache.commons.net.telnet.TelnetClient;
+import ru.stqa.pft.mantis.model.MailMessage;
 
 public class JamesHelper {
 
