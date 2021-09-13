@@ -27,6 +27,7 @@ public class ApplicationManager {
   private DbHelper dbHelper;
   private ManageUsersHelper manageUsersHelper;
   private EditUserHelper editUserHelper;
+  private SoapHelper soapHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -119,6 +120,13 @@ public class ApplicationManager {
   }
 
   public DbHelper db() { return dbHelper;}
+
+  public SoapHelper soap() {
+    if (soapHelper ==null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+  }
 
   public WebDriver getDriver() {
     if (wd==null) {
