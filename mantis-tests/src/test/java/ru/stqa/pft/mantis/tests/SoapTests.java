@@ -1,6 +1,5 @@
 package ru.stqa.pft.mantis.tests;
 
-import biz.futureware.mantis.rpc.soap.client.ProjectData;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.Set;
@@ -28,5 +27,11 @@ public class SoapTests extends TestBase{
         .next());
     Issue created = app.soap().addIssue(issue);
     Assert.assertEquals(issue.getSummary(), created.getSummary());
+  }
+
+  @Test
+  public void testStatusIssue() throws MalformedURLException, ServiceException, RemoteException {
+    skipIfNotFixed(Integer.parseInt("0000001"));
+    System.out.println("hi");
   }
 }

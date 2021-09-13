@@ -1,6 +1,10 @@
 package ru.stqa.pft.mantis.tests;
 
+import java.net.MalformedURLException;
+import java.rmi.RemoteException;
+import javax.xml.rpc.ServiceException;
 import org.openqa.selenium.remote.BrowserType;
+import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.mantis.appmanager.ApplicationManager;
@@ -31,4 +35,16 @@ public class TestBase {
 //    logger.info("Stop testGroupCreation");
 //  }
 
+  protected boolean isIssueOpen(int issueId)
+      throws MalformedURLException, ServiceException, RemoteException {
+    String status = app.soap().getStatusIssue(issueId);
+    return !"resolved".equals(status);
+  }
+
+  public void skipIfNotFixed(int issueId)
+      throws MalformedURLException, ServiceException, RemoteException {
+    if (isIssueOpen(issueId)) {
+      throw new SkipException("Ignored because of issue " + issueId);
+    }
+  }
 }
