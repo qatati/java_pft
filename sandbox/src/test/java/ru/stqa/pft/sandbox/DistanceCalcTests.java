@@ -23,7 +23,7 @@ public class DistanceCalcTests {
   public void testDistanceMixPoint() {
     Point p1 = new Point(-10,12);
     Point p2 = new Point(6,0);
-    Assert.assertEquals(p1.distance(p2), 20.0);
+    Assert.assertEquals(p1.distance(p2), 21.0);
   }
 
   @Test
