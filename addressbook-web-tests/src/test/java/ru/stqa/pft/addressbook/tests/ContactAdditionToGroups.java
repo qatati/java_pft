@@ -33,29 +33,63 @@ public class ContactAdditionToGroups extends TestBase {
     }
   }
 
+//  @Test
+//  public void testContactAdditionToGroups() {
+//    Contacts beforeAddtionContacts = app.db().contacts();
+//    ContactData userSelect = null;
+//    ContactData userAfter = null;
+//    for (ContactData contactData:beforeAddtionContacts) {
+//      userSelect = contactData;
+//      if (contactData.getGroups().size() < groups.size()){
+//        app.contact().additionToGroups(contactData, groups.iterator().next().getId());
+//        app.goTo().homePage();
+//      } else {
+//        app.goTo().groupPage();
+//        app.group().create(new GroupData().withName("new Group"));
+//        groups = app.db().groups();
+//        app.goTo().homePage();
+//      }
+//    }
+//    Contacts afterAddtionContacts = app.db().contacts();
+//    for (ContactData contactData:afterAddtionContacts) {
+//      if (contactData.getId() == userSelect.getId()) {
+//        userAfter = contactData;
+//      }
+//    }
+//    assertThat(afterAddtionContacts, equalTo(beforeAddtionContacts.without(userSelect).withAdded(userAfter)));
+//  }
+
   @Test
   public void testContactAdditionToGroups() {
     Contacts beforeAddtionContacts = app.db().contacts();
+    Groups groupsAll = app.db().groups();
     ContactData userSelect = null;
+    GroupData groupSelect = null;
     ContactData userAfter = null;
+
     for (ContactData contactData:beforeAddtionContacts) {
-      userSelect = contactData;
-      if (contactData.getGroups().size() < groups.size()){
-        app.contact().additionToGroups(contactData, groups.iterator().next().getId());
-        app.goTo().homePage();
-      } else {
-        app.goTo().groupPage();
-        app.group().create(new GroupData().withName("new Group"));
-        groups = app.db().groups();
-        app.goTo().homePage();
+      Groups contactGroups = contactData.getGroups();
+      if (contactGroups.size() != groups.size()) {
+        groupsAll.removeAll(contactGroups);
+        userSelect = contactData;
+        groupSelect = groupsAll.iterator().next();
       }
     }
+
+      if (groupSelect==null) {
+        app.goTo().groupPage();
+        app.group().create(new GroupData().withName("new Group"));
+        groupSelect = app.db().groups().iterator().next();
+        userSelect = beforeAddtionContacts.iterator().next();
+      }
+        app.goTo().homePage();
+        app.contact().additionToGroups(userSelect, groupSelect.getId());
     Contacts afterAddtionContacts = app.db().contacts();
     for (ContactData contactData:afterAddtionContacts) {
       if (contactData.getId() == userSelect.getId()) {
         userAfter = contactData;
       }
     }
-    assertThat(afterAddtionContacts, equalTo(beforeAddtionContacts.without(userSelect).withAdded(userAfter)));
+    assertThat(userAfter.getGroups(), equalTo(userSelect.getGroups().withAdded(groupSelect)));
   }
   }
