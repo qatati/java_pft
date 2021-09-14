@@ -73,6 +73,9 @@ public class ContactAdditionToGroups extends TestBase {
         groupsAll.removeAll(contactGroups);
         userSelect = contactData;
         groupSelect = groupsAll.iterator().next();
+        if (groupSelect!=null) {
+          break;
+        }
       }
     }
 

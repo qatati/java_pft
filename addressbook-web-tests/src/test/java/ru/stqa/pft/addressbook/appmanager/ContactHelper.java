@@ -150,7 +150,7 @@ public class ContactHelper extends BaseHelper {
     wd.findElement(By.name("add")).click();
   }
 
-  public void deletionfromGroups(ContactData contactData, int groupId) {
+  public void deletionfromGroup(ContactData contactData, int groupId) {
     selectGroup(groupId);
     selectContactById(contactData.getId());
     deleteFromGroup();
