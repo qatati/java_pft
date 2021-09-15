@@ -28,6 +28,9 @@ task testGroups(type: Test) {
         if (project.hasProperty('verifyUI')) {
             systemProperty 'verifyUI', "${target}"
         }
+        if (project.hasProperty('platform')) {
+            systemProperty 'platform', "${platform}"
+        }
     }
 
     task testContacts(type: Test) {
